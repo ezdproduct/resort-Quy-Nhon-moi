@@ -17,7 +17,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
         isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
     >
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-[12rem]">
         <Lottie animationData={loadingAnimation} loop={true} />
       </div>
     </div>
