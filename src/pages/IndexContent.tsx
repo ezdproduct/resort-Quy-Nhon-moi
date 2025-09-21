@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ResortHeader } from "@/components/ResortHeader";
 import { HeroSection } from "@/components/HeroSection";
 import { WelcomeSection } from "@/components/WelcomeSection";
@@ -14,21 +15,31 @@ import { EventBannerSection } from "@/components/EventBannerSection";
 import { EventSection } from "@/components/EventSection";
 import { Footer } from "@/components/Footer";
 import { DotNav } from "@/components/DotNav";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { getNavLinks } from "@/constants/navigation"; // Corrected import
-import { useTranslation } from '@/contexts/TranslationContext'; // Added missing import
+import { getNavLinks } from "@/constants/navigation";
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const IndexContent = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
-  const sectionIds = getNavLinks(t).map(link => link.href); // Use getNavLinks
+  const sectionIds = getNavLinks(t).map(link => link.href);
   const activeId = useScrollSpy(sectionIds, { rootMargin: "-30% 0% -70% 0%" });
 
-  // Xác định các section mà header nên đổi màu
   const sectionsToChangeHeader = ['accommodation', 'dining', 'experiences', 'events'];
   const shouldHeaderChangeColor = activeId ? sectionsToChangeHeader.includes(activeId) : false;
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simulate 2 seconds loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div>
+      <LoadingScreen isLoading={isLoading} />
       <ResortHeader shouldHeaderChangeColor={shouldHeaderChangeColor} />
       <DotNav />
       <main>
