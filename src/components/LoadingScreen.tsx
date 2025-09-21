@@ -13,7 +13,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0A3E54] transition-opacity duration-1000",
+        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white transition-opacity duration-1000",
         isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
     >
