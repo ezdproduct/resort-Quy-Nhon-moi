@@ -5,7 +5,7 @@ export const DetailedExperienceSection = () => {
   return (
     <section
       id="experiences"
-      className="relative h-[80vh] bg-cover bg-center text-white flex items-center justify-center"
+      className="relative h-screen bg-cover bg-center text-white flex items-center justify-center"
       style={{ backgroundImage: "url('https://quynhonsearesort.educhua.com/wp-content/uploads/2025/09/IMG_-BIN_7745-1.png')" }}
     >
       <div className="absolute inset-0 bg-black/10" />

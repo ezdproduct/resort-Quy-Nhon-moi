@@ -5,7 +5,7 @@ export const AccommodationSection = () => {
   return (
     <section
       id="accommodation"
-      className="relative h-[80vh] bg-cover bg-center flex items-center justify-center text-white"
+      className="relative h-screen bg-cover bg-center flex items-center justify-center text-white"
       style={{ backgroundImage: "url('/images/luu tru.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/10" />

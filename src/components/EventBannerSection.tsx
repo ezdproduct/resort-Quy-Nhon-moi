@@ -5,7 +5,7 @@ export const EventBannerSection = () => {
   return (
     <section
       id="events"
-      className="relative h-[80vh] bg-cover bg-center flex items-center justify-center text-white"
+      className="relative h-screen bg-cover bg-center flex items-center justify-center text-white"
       style={{ backgroundImage: "url('https://quynhonsearesort.educhua.com/wp-content/uploads/2025/09/IMG_-BIN_7745.png')" }}
     >
       <div className="absolute inset-0 bg-black/10" />
