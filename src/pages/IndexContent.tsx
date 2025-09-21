@@ -30,11 +30,20 @@ const IndexContent = () => {
   const shouldHeaderChangeColor = activeId ? sectionsToChangeHeader.includes(activeId) : false;
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const handleLoad = () => {
       setIsLoading(false);
-    }, 2000); // Simulate 2 seconds loading time
+    };
 
-    return () => clearTimeout(timer);
+    // Kiểm tra xem trang đã tải xong trước khi component được render hay chưa
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      // Nếu chưa, thêm một trình lắng nghe sự kiện 'load'
+      window.addEventListener('load', handleLoad);
+
+      // Dọn dẹp trình lắng nghe sự kiện khi component bị unmount
+      return () => window.removeEventListener('load', handleLoad);
+    }
   }, []);
 
   return (
