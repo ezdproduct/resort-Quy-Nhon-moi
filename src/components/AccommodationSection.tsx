@@ -11,7 +11,7 @@ export const AccommodationSection = () => {
       <div className="absolute inset-0 bg-black/10" />
       <div className="relative z-10 text-center font-serif [text-shadow:1px_1px_3px_rgba(0,0,0,0.4)]">
         <p className="text-2xl md:text-3xl">{t('accommodation_section_number')}</p>
-        <h2 className="text-5xl md:text-7xl font-bold my-2">{t('accommodation_section_title')}</h2>
+        <h2 className="text-5xl md:text-7xl font-semibold my-2">{t('accommodation_section_title')}</h2>
         <img
           src="/icons/shellfish.svg"
           alt="icon"
