@@ -20,7 +20,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Raleway', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        serif: ['Lora', 'serif'],
         script: ['Dancing Script', 'cursive'],
         'public-sans': ['Public Sans', 'sans-serif'], // Added Public Sans
       },
