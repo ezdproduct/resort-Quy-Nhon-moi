@@ -6,11 +6,19 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils"; // Import cn utility
-import { LanguageSwitcher } from "./LanguageSwitcher"; // Import LanguageSwitcher
+import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useTranslation } from '@/contexts/TranslationContext';
 import { getNavLinks } from '@/constants/navigation';
+import { accommodationItems } from "@/constants/accommodation";
+import { ChevronDown } from "lucide-react";
 
 interface ResortHeaderProps {
   shouldHeaderChangeColor: boolean;
@@ -18,9 +26,8 @@ interface ResortHeaderProps {
 
 export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => {
   const { t } = useTranslation();
-  const navLinks = getNavLinks(t); // Use getNavLinks here
+  const navLinks = getNavLinks(t);
 
-  // Màu nền của header sẽ luôn là gradient trong suốt, không thay đổi
   const headerClasses = cn(
     "container mx-auto flex h-16 items-center justify-between rounded-2xl px-4 shadow-lg backdrop-blur-lg sm:px-6 transition-all duration-300",
     "border border-white/20 bg-gradient-to-r from-white/10 via-gray-500/20 to-gray-800/40"
@@ -41,8 +48,9 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
   );
 
   const menuIconFilter = shouldHeaderChangeColor ? "" : "brightness(0) invert(1)";
-  // Biểu tượng vỏ sò trong nút Đặt phòng luôn trắng
   const shellfishButtonIconFilter = 'brightness(0) invert(1)'; 
+
+  const textColorClass = shouldHeaderChangeColor ? "text-darkblue-5" : "text-white";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 p-3 font-sans">
@@ -51,13 +59,13 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
           
           {/* --- DESKTOP LAYOUT --- */}
           <div className="hidden md:flex w-full items-center">
-            <div className="flex-1 flex justify-start items-center gap-4"> {/* Added gap for spacing */}
+            <div className="flex-1 flex justify-start items-center gap-4">
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className={cn(shouldHeaderChangeColor ? "hover:bg-gray-100" : "hover:bg-white/20")}>
                   <img src="/icons/List.svg" alt="Menu" className="h-6 w-6" style={{ filter: menuIconFilter }} />
                 </Button>
               </SheetTrigger>
-              <LanguageSwitcher shouldHeaderChangeColor={shouldHeaderChangeColor} /> {/* Integrated LanguageSwitcher */}
+              <LanguageSwitcher shouldHeaderChangeColor={shouldHeaderChangeColor} />
             </div>
             
             <div className="flex-shrink-0">
@@ -75,7 +83,23 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
               </a>
             </div>
 
-            <div className="flex-1 flex items-center justify-end">
+            <div className="flex-1 flex items-center justify-end gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className={cn("flex items-center gap-1 text-sm font-medium", textColorClass, shouldHeaderChangeColor ? "hover:bg-gray-100" : "hover:bg-white/20")}>
+                    {t('nav_accommodation')}
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {accommodationItems.map((item) => (
+                    <DropdownMenuItem key={item.id} asChild>
+                      <a href={`#${item.id}`}>{t(item.titleKey)}</a>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <button className={bookButtonClasses}>
                 <span>{t('header_book_now')}</span>
                 <img src="/icons/shellfish.svg" alt={t('header_book_now')} className="h-4 w-4" style={{ filter: shellfishButtonIconFilter }} />
