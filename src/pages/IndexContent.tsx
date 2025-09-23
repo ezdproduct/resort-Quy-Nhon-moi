@@ -5,6 +5,8 @@ import { ResortHeader } from "@/components/ResortHeader";
 import { HeroSection } from "@/components/HeroSection";
 import { WelcomeSection } from "@/components/WelcomeSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import { AccommodationSection } from "@/components/AccommodationSection";
+import { AccommodationList } from "@/components/AccommodationList";
 import { DiningSection } from "@/components/DiningSection";
 import { DiningDetailsSection } from "@/components/DiningDetailsSection";
 import { DetailedExperienceSection } from "@/components/DetailedExperienceSection";
@@ -53,7 +55,8 @@ const IndexContent = () => {
         <HeroSection />
         <WelcomeSection />
         <ExperienceSection />
-        {/* AccommodationSection and AccommodationList removed from IndexContent */}
+        <AccommodationSection />
+        <AccommodationList />
         <DiningSection />
         <DiningDetailsSection />
         <DetailedExperienceSection />
