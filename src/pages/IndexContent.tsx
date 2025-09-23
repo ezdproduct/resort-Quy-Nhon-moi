@@ -23,7 +23,10 @@ import { useTranslation } from '@/contexts/TranslationContext';
 const IndexContent = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
-  const sectionIds = getNavLinks(t).map(link => link.href);
+  // Lọc chỉ các liên kết neo (#) cho scroll spy
+  const sectionIds = getNavLinks(t)
+    .map(link => link.href)
+    .filter(href => href.startsWith('#'));
   const activeId = useScrollSpy(sectionIds, { rootMargin: "-30% 0% -70% 0%" });
 
   const sectionsToChangeHeader = ['accommodation', 'dining', 'experiences', 'events'];
@@ -34,14 +37,10 @@ const IndexContent = () => {
       setIsLoading(false);
     };
 
-    // Kiểm tra xem trang đã tải xong trước khi component được render hay chưa
     if (document.readyState === 'complete') {
       handleLoad();
     } else {
-      // Nếu chưa, thêm một trình lắng nghe sự kiện 'load'
       window.addEventListener('load', handleLoad);
-
-      // Dọn dẹp trình lắng nghe sự kiện khi component bị unmount
       return () => window.removeEventListener('load', handleLoad);
     }
   }, []);
