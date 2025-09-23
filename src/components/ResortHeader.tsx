@@ -19,6 +19,7 @@ import { useTranslation } from '@/contexts/TranslationContext';
 import { getNavLinks } from '@/constants/navigation';
 import { accommodationItems } from "@/constants/accommodation";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ResortHeaderProps {
   shouldHeaderChangeColor: boolean;
@@ -94,7 +95,7 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
                 <DropdownMenuContent align="end">
                   {accommodationItems.map((item) => (
                     <DropdownMenuItem key={item.id} asChild>
-                      <a href={`#${item.id}`}>{t(item.titleKey)}</a>
+                      <Link to={`/accommodation/${item.id}`}>{t(item.titleKey)}</Link>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>

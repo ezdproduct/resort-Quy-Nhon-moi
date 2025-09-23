@@ -17,7 +17,7 @@ const AccommodationCard: React.FC<AccommodationCardProps> = React.memo(({ item }
         <h3 className="text-4xl lg:text-[64px] font-serif font-medium leading-tight lg:leading-[72px] text-orange-7 text-center md:text-left flex-grow">
           {t(item.titleKey)}
         </h3>
-        <LearnMoreButton />
+        <LearnMoreButton to={`/accommodation/${item.id}`} />
       </div>
       <div className={`flex flex-col md:flex-row items-start gap-6 md:gap-14 ${isLeftAligned ? '' : 'md:flex-row-reverse'}`}>
         <div className="w-full md:w-[690px] md:h-[390px] flex-shrink-0 mb-4 md:mb-0">
