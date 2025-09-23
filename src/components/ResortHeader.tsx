@@ -70,7 +70,7 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
             </div>
             
             <div className="flex-shrink-0">
-              <a href="/" className="flex items-center space-x-3">
+              <Link to="/" className="flex items-center space-x-3">
                 <img
                   src={shouldHeaderChangeColor ? "https://quynhonsearesort.educhua.com/wp-content/uploads/2025/09/Isolation_Mode.png" : "/icons/Isolation_Mode.svg"}
                   alt="Resort Logo"
@@ -81,14 +81,14 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
                   <span className={logoTextClasses}>QUY NHON SEA</span>
                   <span className={logoSubtitleClasses}>RESORT</span>
                 </div>
-              </a>
+              </Link>
             </div>
 
             <div className="flex-1 flex items-center justify-end gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className={cn("flex items-center gap-1 text-sm font-medium", textColorClass, shouldHeaderChangeColor ? "hover:bg-gray-100" : "hover:bg-white/20")}>
-                    {t('nav_accommodation')}
+                    <Link to="/accommodation">{t('nav_accommodation')}</Link> {/* Link to new AccommodationPage */}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -110,7 +110,7 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
 
           {/* --- MOBILE LAYOUT --- */}
           <div className="flex md:hidden w-full justify-between items-center">
-            <a href="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3">
               <img
                 src={shouldHeaderChangeColor ? "https://quynhonsearesort.educhua.com/wp-content/uploads/2025/09/Isolation_Mode.png" : "/icons/Isolation_Mode.svg"}
                 alt="Resort Logo"
@@ -121,7 +121,7 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
                 <span className={logoTextClasses}>QUY NHON SEA</span>
                 <span className={logoSubtitleClasses}>RESORT</span>
               </div>
-            </a>
+            </Link>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className={cn(shouldHeaderChangeColor ? "hover:bg-gray-100" : "hover:bg-white/20")}>
                 <img src="/icons/List.svg" alt={t('header_menu')} className="h-6 w-6" style={{ filter: menuIconFilter }} />
@@ -137,9 +137,9 @@ export const ResortHeader = ({ shouldHeaderChangeColor }: ResortHeaderProps) => 
           <nav className="flex flex-col space-y-4 mt-8">
             {navLinks.map((link) => (
               <SheetClose asChild key={link.href}>
-                <a href={link.href} className="text-lg hover:text-sky-300 transition-colors">
+                <Link to={link.href.startsWith('#') ? link.href : link.href} className="text-lg hover:text-sky-300 transition-colors">
                   {link.label}
-                </a>
+                </Link>
               </SheetClose>
             ))}
             <SheetClose asChild>
