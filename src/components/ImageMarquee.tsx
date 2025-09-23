@@ -2,11 +2,10 @@ import React from 'react';
 
 interface ImageMarqueeProps {
   images: string[];
-  duration?: string; // Ví dụ: "30s"
+  duration?: string;
 }
 
 export const ImageMarquee: React.FC<ImageMarqueeProps> = ({ images, duration = "40s" }) => {
-  // Nhân đôi danh sách hình ảnh để tạo hiệu ứng cuộn liền mạch
   const duplicatedImages = [...images, ...images];
 
   return (
@@ -17,7 +16,7 @@ export const ImageMarquee: React.FC<ImageMarqueeProps> = ({ images, duration = "
       >
         {duplicatedImages.map((src, index) => (
           <div key={index} className="inline-block w-[360px] h-full flex-shrink-0">
-            <img src={src} alt={`Marquee image ${index}`} className="w-full h-full object-cover" />
+            <img src={src} alt={`Marquee image ${index}`} className="w-full h-full object-cover" loading="lazy" />
           </div>
         ))}
       </div>

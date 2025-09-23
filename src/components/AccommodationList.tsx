@@ -8,45 +8,37 @@ interface AccommodationCardProps {
     titleKey: string;
     subtitleKey: string;
     descriptionKey: string;
-    alignment: "left" | "right"; // Explicitly define as literal types
+    alignment: "left" | "right";
   };
 }
 
-const AccommodationCard: React.FC<AccommodationCardProps> = ({ item }) => {
+const AccommodationCard: React.FC<AccommodationCardProps> = React.memo(({ item }) => {
   const { t } = useTranslation();
   const isLeftAligned = item.alignment === "left";
 
   return (
     <div className="w-full flex flex-col gap-6 md:gap-14">
-      {/* Title and Button Block */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
         <h3 className="text-4xl lg:text-[64px] font-serif font-medium leading-tight lg:leading-[72px] text-orange-7 text-center md:text-left flex-grow">
           {t(item.titleKey)}
         </h3>
         <LearnMoreButton />
       </div>
-
-      {/* Image and Text Block */}
       <div className={`flex flex-col md:flex-row items-start gap-6 md:gap-14 ${isLeftAligned ? '' : 'md:flex-row-reverse'}`}>
-        {/* Image */}
         <div className="w-full md:w-[690px] md:h-[390px] flex-shrink-0 mb-4 md:mb-0">
-          <img src={item.image} alt={t(item.titleKey)} className="w-full h-full object-cover rounded-lg" />
+          <img src={item.image} alt={t(item.titleKey)} className="w-full h-full object-cover rounded-lg" loading="lazy" />
         </div>
-
-        {/* Text content (subtitle, description) */}
-        <div className="flex-1 flex flex-col justify-start gap-2 text-left"> {/* Always text-left on mobile */}
+        <div className="flex-1 flex flex-col justify-start gap-2 text-left">
           <p className="text-darkblue-5 text-xl font-normal leading-7 font-public-sans">{t(item.subtitleKey)}</p>
           <p className="text-neutral-9 text-xl font-normal leading-7 font-public-sans mb-6">{t(item.descriptionKey)}</p>
         </div>
       </div>
     </div>
   );
-};
+});
 
 export const AccommodationList = () => {
-  // Removed: const { t } = useTranslation(); // 't' is not directly used here, only in child components
-
-  const accommodationItems: AccommodationCardProps['item'][] = [ // Explicitly type the array
+  const accommodationItems: AccommodationCardProps['item'][] = [
     {
       image: "https://quynhonsearesort.educhua.com/wp-content/uploads/2025/09/66f4984e3472eb7ab06f15b5cb28a5ccefcd2e88.png",
       titleKey: "deluxe_ocean_view_title",

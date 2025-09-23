@@ -7,28 +7,25 @@ interface ExperienceDetailsCardProps {
     image: string;
     titleKey: string;
     descriptionKey: string;
-    alignment: "left" | "right"; // Explicitly define as literal types
+    alignment: "left" | "right";
   };
 }
 
-const ExperienceDetailsCard: React.FC<ExperienceDetailsCardProps> = ({ item }) => {
+const ExperienceDetailsCard: React.FC<ExperienceDetailsCardProps> = React.memo(({ item }) => {
   const { t } = useTranslation();
   const isLeftAligned = item.alignment === "left";
 
   return (
     <div className="w-full flex flex-col gap-6 md:gap-14">
-      {/* Title and Button Block */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
         <h3 className="text-4xl lg:text-[64px] font-serif font-medium leading-tight lg:leading-[72px] text-orange-7 text-center md:text-left flex-grow">
           {t(item.titleKey)}
         </h3>
         <LearnMoreButton />
       </div>
-
-      {/* Image and Text Block */}
       <div className={`flex flex-col md:flex-row items-start gap-6 md:gap-14 ${isLeftAligned ? '' : 'md:flex-row-reverse'}`}>
         <div className="w-full md:w-[690px] md:h-[390px] flex-shrink-0">
-          <img src={item.image} alt={t(item.titleKey)} className="w-full h-full object-cover rounded-lg" />
+          <img src={item.image} alt={t(item.titleKey)} className="w-full h-full object-cover rounded-lg" loading="lazy" />
         </div>
         <div className={`flex-1 flex flex-col justify-start gap-2 text-center md:text-left`}>
           <p className="text-neutral-9 text-xl font-normal leading-7 font-public-sans">{t(item.descriptionKey)}</p>
@@ -36,12 +33,10 @@ const ExperienceDetailsCard: React.FC<ExperienceDetailsCardProps> = ({ item }) =
       </div>
     </div>
   );
-};
+});
 
 export const ExperienceDetailsSection = () => {
-  // Removed: const { t } = useTranslation(); // 't' is not directly used here, only in child components
-
-  const experienceDetailsItems: ExperienceDetailsCardProps['item'][] = [ // Explicitly type the array
+  const experienceDetailsItems: ExperienceDetailsCardProps['item'][] = [
     {
       image: "https://quynhonsearesort.educhua.com/wp-content/uploads/2025/09/5aff7282e333f6cf5402e47e1aba0dd11d3e0f44-scaled.jpg",
       titleKey: "swimming_pool_title",
