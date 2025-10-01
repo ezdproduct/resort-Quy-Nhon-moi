@@ -3,6 +3,7 @@
 import SvgImage from './SvgImage';
 import { ImageMarquee } from './ImageMarquee'; // Import component mới
 import { useTranslation } from '@/contexts/TranslationContext';
+import { cn } from '@/lib/utils'; // Import cn để kết hợp các class Tailwind
 
 export const ExperienceSection = () => {
   const { t } = useTranslation();
@@ -30,7 +31,11 @@ export const ExperienceSection = () => {
   const renderExperienceItem = (item: typeof experiences[0]) => (
     <div
       key={item.number}
-      className="w-[180px] flex flex-col items-start gap-2 pt-3 border-t border-lightblue-1/50"
+      className={cn(
+        "w-[180px] flex flex-col items-start gap-2 pt-3 border-t border-lightblue-1/50",
+        "cursor-pointer rounded-lg p-4 transition-all duration-300", // Thêm padding, bo góc và hiệu ứng chuyển đổi
+        "hover:scale-105 hover:bg-darkblue-5/20" // Hiệu ứng rê chuột
+      )}
     >
       <div className="w-[52px] h-[52px] flex items-center justify-start">
         <SvgImage src={item.iconSrc} size={80} alt={item.alt} className={iconFilterClass} />
