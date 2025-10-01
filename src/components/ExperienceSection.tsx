@@ -32,10 +32,9 @@ export const ExperienceSection = () => {
     <div
       key={item.number}
       className={cn(
-        "w-[180px] flex flex-col items-start gap-2",
-        "border-t border-lightblue-1/50", // Viền trên màu trắng khi không hover
-        "cursor-pointer rounded-lg p-4 transition-all duration-300",
-        "hover:bg-darkblue-5/20 hover:border hover:border-lightblue-5" // Khi hover: nền mờ và viền xanh dương ở 4 cạnh
+        "w-[180px] flex flex-col items-start gap-2 pt-3 border-t border-lightblue-1/50", // Viền trên màu trắng khi không hover
+        "cursor-pointer p-4 transition-all duration-300", // Giữ padding, loại bỏ bo góc mặc định
+        "hover:bg-darkblue-5/20 hover:border hover:border-lightblue-5 hover:rounded-lg" // Khi hover: nền mờ, viền xanh dương ở 4 cạnh và bo góc
       )}
     >
       <div className="w-[52px] h-[52px] flex items-center justify-start">
