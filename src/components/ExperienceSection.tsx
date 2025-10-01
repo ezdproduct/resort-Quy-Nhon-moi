@@ -1,3 +1,5 @@
+"use client";
+
 import SvgImage from './SvgImage';
 import { ImageMarquee } from './ImageMarquee'; // Import component mới
 import { useTranslation } from '@/contexts/TranslationContext';
@@ -31,7 +33,7 @@ export const ExperienceSection = () => {
       className="w-[180px] flex flex-col items-start gap-2 pt-3 border-t border-lightblue-1/50"
     >
       <div className="w-[52px] h-[52px] flex items-center justify-start">
-        <SvgImage src={item.iconSrc} size={32} alt={item.alt} className={iconFilterClass} />
+        <SvgImage src={item.iconSrc} size={40} alt={item.alt} className={iconFilterClass} />
       </div>
       <div className="flex flex-col items-start gap-1 self-stretch">
         <p className="text-lightblue-3 text-xl font-public-sans font-normal">{item.number}</p>
