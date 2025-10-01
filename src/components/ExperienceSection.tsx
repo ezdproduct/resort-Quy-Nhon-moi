@@ -34,7 +34,7 @@ export const ExperienceSection = () => {
       className={cn(
         "w-[180px] flex flex-col items-start gap-2 pt-3 border-t border-lightblue-1/50",
         "cursor-pointer rounded-lg p-4 transition-all duration-300", // Thêm padding, bo góc và hiệu ứng chuyển đổi
-        "hover:scale-105 hover:bg-darkblue-5/20" // Hiệu ứng rê chuột
+        "hover:bg-darkblue-5/20" // Chỉ giữ lại hiệu ứng đổi màu nền khi rê chuột
       )}
     >
       <div className="w-[52px] h-[52px] flex items-center justify-start">
